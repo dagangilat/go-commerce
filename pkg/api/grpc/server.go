@@ -3,8 +3,11 @@ package grpc
 import (
 	"log"
 	"net"
+
 	// Update this import to match the go_package option in your .proto file
-	//"google.golang.org/grpc"
+	// Replace this with the correct package for your generated code
+
+	"google.golang.org/grpc"
 )
 
 type server struct{}
