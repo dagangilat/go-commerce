@@ -1,0 +1,39 @@
+
+syntax = "proto3";
+
+package ecommerce;
+
+option go_package = "go-commerce/pkg/api/grpc;grpc";
+
+
+service CustomerService {
+    rpc GetCustomer(GetCustomerRequest) returns (Customer) {}
+    // Add other methods...
+}
+
+service ProductService {
+    rpc GetProduct(GetProductRequest) returns (Product) {}
+    // Add other methods...
+}
+
+message GetCustomerRequest {
+    int32 id = 1;
+}
+
+message Customer {
+    int32 id = 1;
+    string name = 2;
+    string address = 3;
+    string phone = 4;
+    string email = 5;
+}
+
+message GetProductRequest {
+    int32 id = 1;
+}
+
+message Product {
+    int32 id = 1;
+    string name = 2;
+    string description = 3;
+}
