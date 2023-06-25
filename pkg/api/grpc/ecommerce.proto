@@ -1,25 +1,12 @@
-
 syntax = "proto3";
 
-package ecommerce;
+package pb;
 
-option go_package = "github.com/dagangilat/go-commerce/pkg/api/grpc/ecommerce";
+//import "google/protobuf/empty.proto";
 
+option go_package = "github.com/dagangilat/go-commerce/pkg/api/grpc/pb";
 
-service CustomerService {
-    rpc GetCustomer(GetCustomerRequest) returns (Customer) {}
-    // Add other methods...
-}
-
-service ProductService {
-    rpc GetProduct(GetProductRequest) returns (Product) {}
-    // Add other methods...
-}
-
-message GetCustomerRequest {
-    int32 id = 1;
-}
-
+// Customer data
 message Customer {
     int32 id = 1;
     string name = 2;
@@ -28,12 +15,40 @@ message Customer {
     string email = 5;
 }
 
-message GetProductRequest {
+// Request message with customer data
+message CustomerRequest {
+    Customer customer = 1;
+}
+
+// Response message with customer data
+message CustomerResponse {
+    Customer customer = 2;
+}
+
+// Request message with customer id
+message CustomerIdRequest {
     int32 id = 1;
 }
 
-message Product {
-    int32 id = 1;
-    string name = 2;
-    string description = 3;
+// Response message with a list of customers
+message CustomersResponse {
+    repeated Customer customers = 1;
+}
+
+// CustomerService provides CRUD operations for customers
+service CustomerService {
+    // Creates a new customer
+    rpc CreateCustomer (CustomerRequest) returns (CustomerResponse);
+
+    // Retrieves a customer by id
+    rpc GetCustomer (CustomerIdRequest) returns (CustomerResponse);
+
+    // Retrieves all customers
+    rpc GetAllCustomers (google.protobuf.Empty) returns (CustomersResponse);
+
+    // Updates a customer
+    rpc UpdateCustomer (CustomerRequest) returns (CustomerResponse);
+
+    // Deletes a customer by id
+    rpc DeleteCustomer (CustomerIdRequest) returns (google.protobuf.Empty);
 }
