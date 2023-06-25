@@ -5,7 +5,6 @@ import (
 	"net"
 
 	// Update this import to match the go_package option in your .proto file
-	// Replace this with the correct package for your generated code
 
 	"google.golang.org/grpc"
 )

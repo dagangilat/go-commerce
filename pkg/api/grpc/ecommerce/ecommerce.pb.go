@@ -4,7 +4,7 @@
 // 	protoc        v3.14.0
 // source: ecommerce.proto
 
-package pb
+package ecommerce
 
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
